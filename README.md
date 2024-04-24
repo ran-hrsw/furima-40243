@@ -66,7 +66,6 @@
 | customer            | string              | null: false                    |
 | product             | string              | null: false                    |
 
-
 ### Association
 
 * belongs_to :user
