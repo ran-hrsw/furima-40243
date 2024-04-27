@@ -5,7 +5,7 @@
 | Column             | Type                | Options                   |
 |--------------------|---------------------|---------------------------|
 | nickname           | string              | null: false               |
-| email              | string              | null: false               |
+| email              | string              | null: false,unique: true  |
 | encrypted_password | string              | null: false               |
 | family_name        | string              | null: false               |
 | first_name         | string              | null: false               |
@@ -25,8 +25,8 @@
 | buying_history      | references         | null: false, foreign_key: true |
 | post_code           | string             | null: false                    |
 | city                | string             | null: false                    |
-| address_id          | string             | null: false                    |
-| number_id           | string             | null: false                    |
+| address_id          | integer            | null: false                    |
+| number              | string             | null: false                    |
 | building_name       | string             |                                |
 | phone_number        | string             | null: false                    |
 
@@ -37,17 +37,17 @@
 
 ## items table
 
-| Column              | Type                | Options                  |
-|---------------------|---------------------|--------------------------|
-| user                | references          | foreign_key: true        |
-| price               | integer             | null: false              |
-| item_name           | string              | null: false              |
-| item_description    | texr                | null: false              |
-| category_id         | integer              | null: false              |
-| status_id           | integer             | null: false              |
-| cost_id             | integer             | null: false              |
-| address_id          | integer             | null: false              |
-| transit_time_id             | integer             | null: false              |
+| Column              | Type                | Options                            |
+|---------------------|---------------------|------------------------------------|
+| user                | references          | null: false, foreign_key: true     |
+| price               | integer             | null: false                        |
+| item_name           | string              | null: false                        |
+| item_description    | text                | null: false                        |
+| category_id         | integer             | null: false                        |
+| status_id           | integer             | null: false                        |
+| cost_id             | integer             | null: false                        |
+| address_id          | integer             | null: false                        |
+| transit_time_id     | integer             | null: false                        |
 
 ### Association
 
@@ -64,7 +64,7 @@
 ### Association
 
 * belongs_to :user
-* belongs_tp :items
+* belongs_to :item
 * has_one :address
 
 
