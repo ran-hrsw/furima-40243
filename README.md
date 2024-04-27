@@ -16,21 +16,21 @@
 ### Association
 
 * has_many :items
-* has_one :address
-* has_one :buying history
+* has_one :addresses
+* has_one :buying histories
 
-## address table
+## addresses table
 
-| Column              | Type               | Options                   |
-|---------------------|--------------------|---------------------------|
-| user                | references         | foreign_key: true         |
-| history             | string             | null: false               |
-| post_code           | string             | null: false               |
-| prefecture          | string             | null: false               |
-| city                | string             | null: false               |
-| address             | string             | null: false               |
-| building_name       | string             |                           |
-| phone_number        | string             | null: false               |
+| Column              | Type               | Options                        |
+|---------------------|--------------------|--------------------------------|
+| user                | references         | foreign_key: true              |
+| buying_history      | reherences         | null: false, foreign_key: true |
+| post_code           | string             | null: false                    |
+| prefecture          | string             | null: false                    |
+| city                | string             | null: false                    |
+| address             | string             | null: false                    |
+| building_name       | string             |                                |
+| phone_number        | string             | null: false                    |
 
 
 ### Association
@@ -41,24 +41,25 @@
 
 | Column              | Type                | Options                  |
 |---------------------|---------------------|--------------------------|
+| user                | references          | foreign_key: true        |
 | price               | integer             | null: false              |
 | items_name          | string              | null: false              |
 | name                | string              | null: false              |
 | category            | string              | null: false              |
-| status              | string              | null: false              |
-| cost                | string              | null: false              |
-| address             | string              | null: false              |
-| days                | string              | null: false              |
+| status_id           | integer             | null: false              |
+| cost_id             | integer             | null: false              |
+| address_id          | integer             | null: false              |
+| days_id             | integer             | null: false              |
 
 ### Association
 
 * belongs_to :user
 
-## Buying history table
+## Buying histories table
 
 | Column              | Type                | Options                        |
 |---------------------|---------------------|--------------------------------|
-| customer            | string              | null: false, foreign_key: true |
+| user                | references          | null: false, foreign_key: true |
 | items               | string              | null: false, foreign_key: true |
 
 ### Association
