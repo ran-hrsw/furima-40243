@@ -16,7 +16,7 @@
 ### Association
 
 * has_many :items
-* has_many :buying histories
+* has_many :buying_histories
 
 ## addresses table
 
@@ -25,16 +25,15 @@
 | buying_history      | references         | null: false, foreign_key: true |
 | post_code           | string             | null: false                    |
 | city                | string             | null: false                    |
-| address_id             | string             | null: false                    |
+| address_id          | string             | null: false                    |
+| number_id           | string             | null: false                    |
 | building_name       | string             |                                |
 | phone_number        | string             | null: false                    |
 
 
 ### Association
 
-* belongs_to :user
-* has_many :items
-* has_one :buying histories
+* belongs_to :buying_history
 
 ## items table
 
@@ -42,8 +41,8 @@
 |---------------------|---------------------|--------------------------|
 | user                | references          | foreign_key: true        |
 | price               | integer             | null: false              |
-| items_name          | string              | null: false              |
-| name                | string              | null: false              |
+| item_name           | string              | null: false              |
+| item_description    | texr                | null: false              |
 | category_id         | integer              | null: false              |
 | status_id           | integer             | null: false              |
 | cost_id             | integer             | null: false              |
@@ -53,19 +52,19 @@
 ### Association
 
 * belongs_to :user
-* has_one :buying histories
+* has_one :buying_history
 
-## Buying histories table
+## Buying_histories table
 
 | Column              | Type                | Options                        |
 |---------------------|---------------------|--------------------------------|
 | user                | references          | null: false, foreign_key: true |
-| items               | string              | null: false, foreign_key: true |
+| items               | references          | null: false, foreign_key: true |
 
 ### Association
 
 * belongs_to :user
-* has_many :items
-* has_one :addresses
+* belongs_tp :items
+* has_one :address
 
 
