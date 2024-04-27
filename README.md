@@ -16,19 +16,16 @@
 ### Association
 
 * has_many :items
-* has_one :addresses
-* has_one :buying histories
+* has_many :buying histories
 
 ## addresses table
 
 | Column              | Type               | Options                        |
 |---------------------|--------------------|--------------------------------|
-| user                | references         | foreign_key: true              |
-| buying_history      | reherences         | null: false, foreign_key: true |
+| buying_history      | references         | null: false, foreign_key: true |
 | post_code           | string             | null: false                    |
-| prefecture          | string             | null: false                    |
 | city                | string             | null: false                    |
-| address             | string             | null: false                    |
+| address_id             | string             | null: false                    |
 | building_name       | string             |                                |
 | phone_number        | string             | null: false                    |
 
@@ -36,6 +33,8 @@
 ### Association
 
 * belongs_to :user
+* has_many :items
+* has_one :buying histories
 
 ## items table
 
@@ -45,15 +44,16 @@
 | price               | integer             | null: false              |
 | items_name          | string              | null: false              |
 | name                | string              | null: false              |
-| category            | string              | null: false              |
+| category_id         | integer              | null: false              |
 | status_id           | integer             | null: false              |
 | cost_id             | integer             | null: false              |
 | address_id          | integer             | null: false              |
-| days_id             | integer             | null: false              |
+| transit_time_id             | integer             | null: false              |
 
 ### Association
 
 * belongs_to :user
+* has_one :buying histories
 
 ## Buying histories table
 
@@ -65,5 +65,7 @@
 ### Association
 
 * belongs_to :user
+* has_many :items
+* has_one :addresses
 
 
