@@ -79,4 +79,6 @@ group :production do
   gem 'pg'
 end
 
-gem 'active_hash'
+gem 'devise'
+
+gem 'factory_bot_rails'
