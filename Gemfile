@@ -73,10 +73,15 @@ end
 
 group :development do
   gem 'rubocop', require: false
+  gem 'rspec-rails', '~> 4.0.0'
 end
 
 group :production do
   gem 'pg'
 end
 
-gem 'active_hash'
+gem 'devise'
+
+gem 'factory_bot_rails'
+
+gem 'faker'
