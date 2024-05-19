@@ -79,13 +79,13 @@ RSpec.describe Item, type: :model do
       end
 
       it '￥10,000以上では登録できない' do
-        @item.price = 10_001
+        @item.price = 999_999_9
         @item.valid?
         expect(@item.errors.full_messages).to include('Price must be less than 10000')
       end
 
       it '半角英数字以外では登録できない' do
-        @item.price = ''
+        @item.price = 'らら'
         @item.valid?
         expect(@item.errors.full_messages).to include("Price can't be blank")
       end
