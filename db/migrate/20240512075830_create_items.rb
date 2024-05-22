@@ -11,6 +11,7 @@ class CreateItems < ActiveRecord::Migration[7.0]
       t.integer        :cost_id,            null: false
       t.integer        :address_id,         null: false
       t.integer        :transit_time_id,    null: false
+      t.timestamps
     end
   end
 end
