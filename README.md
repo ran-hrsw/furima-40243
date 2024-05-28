@@ -18,7 +18,7 @@
 * has_many :items
 * has_many :buying_histories
 
-## addresses table
+## informations table
 
 | Column              | Type               | Options                        |
 |---------------------|--------------------|--------------------------------|
@@ -54,7 +54,7 @@
 * belongs_to :user
 * has_one :buying_history
 
-## Buying_histories table
+## buying_histories table
 
 | Column              | Type                | Options                        |
 |---------------------|---------------------|--------------------------------|

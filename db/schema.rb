@@ -10,8 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_13_094629) do
-  create_table "active_storage_attachments", charset: "utf8mb4", force: :cascade do |t|
+ActiveRecord::Schema[7.0].define(version: 2024_05_26_104155) do
+  create_table "active_storage_attachments", charset: "utf8", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
     t.bigint "record_id", null: false
@@ -21,7 +21,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_13_094629) do
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
 
-  create_table "active_storage_blobs", charset: "utf8mb4", force: :cascade do |t|
+  create_table "active_storage_blobs", charset: "utf8", force: :cascade do |t|
     t.string "key", null: false
     t.string "filename", null: false
     t.string "content_type"
@@ -33,21 +33,35 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_13_094629) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
-  create_table "active_storage_variant_records", charset: "utf8mb4", force: :cascade do |t|
+  create_table "active_storage_variant_records", charset: "utf8", force: :cascade do |t|
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
-  create_table "articles", charset: "utf8mb4", force: :cascade do |t|
-    t.string "title", null: false
-    t.text "text", null: false
-    t.integer "genre_id", null: false
+  create_table "buying_histories", charset: "utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "item_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["item_id"], name: "index_buying_histories_on_item_id"
+    t.index ["user_id"], name: "index_buying_histories_on_user_id"
   end
 
-  create_table "items", charset: "utf8mb4", force: :cascade do |t|
+  create_table "information", charset: "utf8", force: :cascade do |t|
+    t.bigint "buying_history_id", null: false
+    t.string "phone_number", null: false
+    t.string "post_code", null: false
+    t.string "city", null: false
+    t.string "building_name"
+    t.integer "address_id", null: false
+    t.string "number", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["buying_history_id"], name: "index_information_on_buying_history_id"
+  end
+
+  create_table "items", charset: "utf8", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.integer "price", null: false
     t.string "item_name", null: false
@@ -62,7 +76,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_13_094629) do
     t.index ["user_id"], name: "index_items_on_user_id"
   end
 
-  create_table "users", charset: "utf8mb4", force: :cascade do |t|
+  create_table "users", charset: "utf8", force: :cascade do |t|
     t.string "nickname", null: false
     t.string "email", null: false
     t.string "encrypted_password", null: false
@@ -82,5 +96,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_13_094629) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "buying_histories", "items"
+  add_foreign_key "buying_histories", "users"
+  add_foreign_key "information", "buying_histories"
   add_foreign_key "items", "users"
 end
