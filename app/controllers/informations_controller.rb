@@ -5,6 +5,7 @@ class InformationsController < ApplicationController
   end
 
   def create
+    @item = Item.find(params[:item_id])
     @buying_address = BuyingAddress.new(information_params)
     if @buying_address.valid?
       @buying_address.save
