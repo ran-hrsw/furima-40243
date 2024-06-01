@@ -27,6 +27,9 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    return unless @item.buying_history.present?
+
+    redirect_to item_path
   end
 
   def update
