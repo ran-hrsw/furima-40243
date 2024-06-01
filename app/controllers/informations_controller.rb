@@ -28,7 +28,7 @@ class InformationsController < ApplicationController
   end
 
   def pay_item
-    Payjp.api_key = 'sk_test_c3520f22d1fcb16c83406366' # 自身のPAY.JPテスト秘密鍵を記述しましょう
+    Payjp.api_key = 'sk_test_****************************************' # 自身のPAY.JPテスト秘密鍵を記述しましょう
     Payjp::Charge.create(
       amount: @item.price, # 商品の値段
       card: information_params[:token], # カードトークン
