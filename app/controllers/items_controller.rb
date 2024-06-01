@@ -32,8 +32,8 @@ class ItemsController < ApplicationController
     # if item.buying_history.present?
     #  redirect_to item_path
 
-    def redirect_if_sold
-      redirect_to root_path if @item.sold?
+    def redirect_if_present?
+      redirect_to root_path if @item.present?
     end
   end
 
@@ -50,10 +50,6 @@ class ItemsController < ApplicationController
     redirect_to root_path
   end
 
-  def move_to_index
-    redirect_to root_path if current_user.id != @item.user.id || @item.buying_history.present?
-  end
-
   private
 
   def item_params
@@ -63,5 +59,9 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def move_to_index
+    redirect_to root_path if current_user.id != @item.user.id || @item.buying_history.present?
   end
 end
