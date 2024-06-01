@@ -3,9 +3,11 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :move_to_index, only: [:destroy, :edit]
 
+  # before_action :set_item, only: [:edit]
+  # before_action :redirect_if_sold, only: [:edit]
+
   def index
     @items = Item.order(created_at: :desc)
-    # 学習メモ@items = Item.order('created_at DESC')
   end
 
   def new
@@ -27,6 +29,12 @@ class ItemsController < ApplicationController
   end
 
   def edit
+    # if item.buying_history.present?
+    #  redirect_to item_path
+
+    def redirect_if_present?
+      redirect_to root_path if @item.present?
+    end
   end
 
   def update
@@ -42,10 +50,6 @@ class ItemsController < ApplicationController
     redirect_to root_path
   end
 
-  def move_to_index
-    redirect_to root_path unless current_user == @item.user
-  end
-
   private
 
   def item_params
@@ -55,5 +59,9 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+
+  def move_to_index
+    redirect_to root_path if current_user.id != @item.user.id || @item.buying_history.present?
   end
 end
