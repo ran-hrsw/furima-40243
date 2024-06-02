@@ -3,9 +3,6 @@ class ItemsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   before_action :move_to_index, only: [:destroy, :edit]
 
-  # before_action :set_item, only: [:edit]
-  # before_action :redirect_if_sold, only: [:edit]
-
   def index
     @items = Item.order(created_at: :desc)
   end
@@ -29,9 +26,6 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    # if item.buying_history.present?
-    #  redirect_to item_path
-
     def redirect_if_present?
       redirect_to root_path if @item.present?
     end
