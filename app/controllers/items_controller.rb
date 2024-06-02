@@ -26,9 +26,7 @@ class ItemsController < ApplicationController
   end
 
   def edit
-    def redirect_if_present?
-      redirect_to root_path if @item.present?
-    end
+    redirect_to root_path if @item.buying_history.present?
   end
 
   def update
