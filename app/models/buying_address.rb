@@ -9,7 +9,7 @@ class BuyingAddress
     validates :post_code, format: { with: /\A[0-9]{3}-[0-9]{4}\z/, message: 'is invalid. Include hyphen(-)' }
     validates :city
     validates :address_id
-    validates :address_id, numericality: { other_than: 0, message: "can't be blank" }
+    validates :address_id, numericality: { other_than: 1, message: "can't be blank" }
     validates :number
     validates :phone_number
     validates :phone_number, length: { in: 10..11 }
